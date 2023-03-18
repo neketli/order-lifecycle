@@ -6,5 +6,5 @@
 </script>
 
 <template>
-  <div>content</div>
+  <div>last-activity</div>
 </template>

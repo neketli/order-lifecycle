@@ -6,5 +6,5 @@
 </script>
 
 <template>
-  <div>content</div>
+  <div>search</div>
 </template>
