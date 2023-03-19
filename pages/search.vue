@@ -6,6 +6,7 @@ import { toast } from 'vue3-toastify';
 
 const searchInput = ref('');
 const dateInput = ref([]);
+const isLoading = ref(false);
 
 const radioOptopns = [
   {
@@ -27,13 +28,8 @@ const radioInput = ref(radioOptopns[0]);
 const formatDate = (date) => date.split('T')[0].split('-').reverse().join('.');
 
 const find = async () => {
-  lifecycle.value.push({
-    date: '13.03.23',
-    'Номер заявки': 51390453,
-    'Клиент*': 'ТАГАНРОГСКИЙУЭСМАТВЕЕВ-КУРГАНСКАЯГРУППАТЕХНОЛОГИЧЕСКИЕ',
-    ИНН: 7707049388,
-    Статус: 'В работе',
-  });
+  if (isLoading.value) return;
+  isLoading.value = true;
 
   try {
     const { data } = await axios.post(
@@ -50,9 +46,17 @@ const find = async () => {
         },
       }
     );
+
+    if (!data.length) {
+      toast.info('Не найдено!');
+      lifecycle.value = [];
+      return;
+    }
+    lifecycle.value = data;
   } catch (error) {
     toast.error('Произошла ошибка на сервере...');
   }
+  isLoading.value = false;
 };
 </script>
 
@@ -65,7 +69,9 @@ const find = async () => {
     <BaseInput v-model="searchInput" @keyup.enter="find">
       <template #label> Поиск: </template>
     </BaseInput>
-    <BaseButton class="max-w-sm" @click="find"> Найти </BaseButton>
+    <BaseButton :loading="isLoading" class="max-w-sm" @click="find">
+      Найти
+    </BaseButton>
 
     <div class="flex flex-col gap-1" v-if="lifecycle.length">
       <BaseLifecycle v-for="item in lifecycle" :key="item.date" :data="item" />

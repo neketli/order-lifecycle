@@ -1,5 +1,16 @@
 <script setup>
 defineProps(['data']);
+
+const getStatus = (status) => {
+  switch (true) {
+    case status.includes('Закрыт'):
+      return 'bg-green-300';
+    case status.includes('Удалена') || status.includes('Тест'):
+      return 'bg-red-300';
+    default:
+      return 'bg-yellow-300';
+  }
+};
 </script>
 
 <template>
@@ -10,8 +21,6 @@ defineProps(['data']);
     <div class="date">Номер заявки: {{ data['Номер заявки'] }}</div>
     <div class="date">Клиент: {{ data['Клиент*'] }}</div>
     <div class="date">ИНН: {{ data['ИНН'] }}</div>
-    <div :class="{ 'bg-yellow-300': data['Статус'] === 'В работе' }">
-      Статус: {{ data['Статус'] }}
-    </div>
+    <div :class="getStatus(data['Статус'])">Статус: {{ data['Статус'] }}</div>
   </div>
 </template>
