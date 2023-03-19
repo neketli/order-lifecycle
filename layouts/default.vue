@@ -23,7 +23,7 @@ const menu_items = [
         <div class="menu">
           <BaseMenu :menu-items="menu_items" />
         </div>
-        <div class="content">
+        <div class="content w-full px-4">
           <slot />
         </div>
       </div>

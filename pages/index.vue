@@ -1,34 +1,51 @@
 <script lang="ts" setup>
 import axios from 'axios';
 import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
-let isLoading = false;
-let file: File;
+const state = reactive({ isLoading: false, hasFiles: false });
+let files: File[];
 
 const fileUpload = async (value: any) => {
-  file = value;
+  files = value;
+  state.hasFiles = !!files?.length;
 };
 
 const uploadOnServer = async () => {
-  isLoading = true;
+  if (state.isLoading || !state.hasFiles) return;
+
+  state.isLoading = true;
   let formData = new FormData();
-  formData.append('file', file);
-  console.log(formData);
+
+  files.forEach((file) => {
+    formData.append('files', file);
+  });
 
   let code;
   try {
     const data = await axios.post(
       `${import.meta.env.VITE_API_URL}/files-upload`,
-      formData
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
     );
+
     code = data.status;
   } catch (error: any) {
-    code = error.request.status;
+    code = error?.request?.status || 500;
   }
 
   switch (code) {
     case 500:
       toast.error('Произошла внутренняя ошибка...', {
+        autoClose: 3000,
+      });
+      break;
+    case 404:
+      toast.error('404 Произошла внутренняя ошибка...', {
         autoClose: 3000,
       });
       break;
@@ -44,25 +61,33 @@ const uploadOnServer = async () => {
       break;
   }
 
-  isLoading = false;
+  state.isLoading = false;
 };
 </script>
 
 <template>
-  <section>
-    <h1 class="text-2xl">File upload</h1>
-
-    <BaseFileInput @fileUpload="fileUpload">
-      <template #description>
-        <div class="mb-2 text-sm text-gray-500">
-          Перенесите файлы с данными в эту область или
-          <span class="font-bold">нажмите</span> чтобы загрузить
-        </div>
-        <div class="mb-2 text-xs text-gray-500">
-          Файлы должен быть в формате .xlsx
-        </div>
-      </template>
-    </BaseFileInput>
-    <BaseButton @click="uploadOnServer">123</BaseButton>
+  <section class="py-8 flex flex-col gap-4">
+    <h1 class="text-2xl">Главная страница</h1>
+    <p>Здесь вы можете загрузить файлы для дальнейшей работы</p>
+    <div class="flex flex-col items-center gap-4 justify-center">
+      <BaseFileInput @fileUpload="fileUpload">
+        <template #description>
+          <div class="mb-2 text-sm text-gray-500">
+            Перенесите файлы с данными в эту область или
+            <span class="font-bold">нажмите</span> чтобы загрузить
+          </div>
+          <div class="mb-2 text-xs text-gray-500">
+            Файлы должен быть в формате .xlsx
+          </div>
+        </template>
+      </BaseFileInput>
+      <BaseButton
+        class="max-w-sm"
+        :loading="state.isLoading"
+        :disabled="!state.hasFiles"
+        @click="uploadOnServer"
+        >Отправить на сервер</BaseButton
+      >
+    </div>
   </section>
 </template>

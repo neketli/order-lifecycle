@@ -6,5 +6,5 @@
 </script>
 
 <template>
-  <div>last-activity</div>
+  <div class="text-3xl font-bold p-8">Work in progress...</div>
 </template>
