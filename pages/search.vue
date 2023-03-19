@@ -54,7 +54,7 @@ const find = async () => {
     <VueDatePicker v-model="dateInput" range :enableTimePicker="false" />
 
     <BaseInput v-model="searchInput" @keyup.enter="find">
-      <template #label> Поиск заявки </template>
+      <template #label> Поиск: </template>
     </BaseInput>
     <BaseButton class="max-w-sm" @click="find"> Найти </BaseButton>
   </section>
