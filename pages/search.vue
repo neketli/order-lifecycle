@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import axios from 'axios';
@@ -20,12 +20,21 @@ const radioOptopns = [
   },
 ];
 
+const lifecycle = ref([]);
+
 const radioInput = ref(radioOptopns[0]);
 
-const formatDate = (date: string) =>
-  date.split('T')[0].split('-').reverse().join('.');
+const formatDate = (date) => date.split('T')[0].split('-').reverse().join('.');
 
 const find = async () => {
+  lifecycle.value.push({
+    date: '13.03.23',
+    'Номер заявки': 51390453,
+    'Клиент*': 'ТАГАНРОГСКИЙУЭСМАТВЕЕВ-КУРГАНСКАЯГРУППАТЕХНОЛОГИЧЕСКИЕ',
+    ИНН: 7707049388,
+    Статус: 'В работе',
+  });
+
   try {
     const { data } = await axios.post(
       `${import.meta.env.VITE_API_URL}/search`,
@@ -57,5 +66,9 @@ const find = async () => {
       <template #label> Поиск: </template>
     </BaseInput>
     <BaseButton class="max-w-sm" @click="find"> Найти </BaseButton>
+
+    <div class="flex flex-col gap-1" v-if="lifecycle.length">
+      <BaseLifecycle v-for="item in lifecycle" :key="item.date" :data="item" />
+    </div>
   </section>
 </template>
