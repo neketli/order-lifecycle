@@ -16,3 +16,5 @@ Let the server take care of the data, and all that remains for people is to conv
 
 See details
 [Frontend :seedling:](frontend) | [Backend :back::end:](backend)
+
+![rostelecom](https://user-images.githubusercontent.com/48692866/226289697-fd1c7c4d-369d-4852-84a8-8fe9b5916f7e.png)
