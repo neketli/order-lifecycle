@@ -1,0 +1,28 @@
+# Server is up
+GET http://localhost:8080 HTTP/1.1
+
+###
+# Server uptime
+GET http://localhost:8080/api/lifetime HTTP/1.1
+
+###
+# Server search endpoint
+POST http://localhost:8080/api/search HTTP/1.1
+content-type: application/json
+
+{
+    "start_date": "09.03.2023",
+    "end_date": "12.03.2023",
+    "type": "order",
+    "value": "123456",
+}
+
+
+###
+# Server files upload
+POST http://localhost:8080/api/files-upload HTTP/1.1
+content-type: multipart/form-data
+
+{
+    "files": [] 
+}
