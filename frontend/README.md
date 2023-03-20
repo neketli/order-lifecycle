@@ -1,6 +1,6 @@
 # Frontend of lifecycle app
 
-Maded with nuxt.js in SPA format
+Maded with [nuxt.js](https://nuxt.com/) in SPA format
 
 ## Features
 

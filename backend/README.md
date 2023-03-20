@@ -1,6 +1,6 @@
 # Backend of lifecycle app
 
-Maded with express to web-server and python for application
+Maded with [express.js](https://expressjs.com/) to web-server and python for application
 
 ## To run
 
