@@ -15,5 +15,4 @@ Let the server take care of the data, and all that remains for people is to conv
 ### Implementation details :shipit:
 
 See details
-[Frontend :seedling:]('/backend/readme.md')
-[Backend :back::end:]('/backend/readme.md')
+[Frontend :seedling:]('frontend/') | [Backend :back::end:]('backend/')

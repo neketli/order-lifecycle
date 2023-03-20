@@ -5,7 +5,7 @@ Maded with nuxt.js in SPA format
 ## Features
 
 - [x] 🌊 [Tailwindcss](https://tailwindcss.nuxt.dev/) styles
-- [x] ✨ Eslint linting
+- [x] ✨ [Eslint](https://eslint.org/) linting
 - [x] 🔗 [Axios](https://axios-http.com/) to requests
 
 ## Setup
