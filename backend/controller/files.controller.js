@@ -10,7 +10,7 @@ const getFiles = async (req, res) => {
         return;
       }
       // file.mv(`./data/_${file.name.split("_")[1]}`);
-      file.mv(`./modules/exel-parser/data/_${file.name.split("_")[1]}`);
+      file.mv(`./modules/parser/data/_${file.name.split("_")[1]}`);
     });
     res?.sendStatus(200);
   } catch (error) {

@@ -9,7 +9,7 @@ const search = async (req, res) => {
     const options = {
       mode: "text",
       pythonOptions: ["-u"],
-      scriptPath: path.join(__dirname, "/modules/exel-parser"),
+      scriptPath: path.join(__dirname, "/modules/parser"),
       args: [
         "--start_date",
         start_date,
