@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "prepare": "husky install",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -26,9 +25,6 @@
     "@vueuse/nuxt": "^9.5.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.28.0",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
-    "msw": "^0.49.0",
     "nuxt": "3.0.0"
   },
   "dependencies": {
@@ -36,9 +32,7 @@
     "@vuepic/vue-datepicker": "^4.2.2",
     "axios": "^1.1.3",
     "font-awesome": "^4.7.0",
+    "lint-staged": "^13.2.1",
     "vue3-toastify": "^0.1.5"
-  },
-  "msw": {
-    "workerDirectory": "public"
   }
 }

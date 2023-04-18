@@ -11,12 +11,12 @@ const isLoading = ref(false);
 const radioOptopns = [
   {
     id: 1,
-    value: 'order',
+    value: 'nomer_zajavki',
     label: 'Поиск по заявке',
   },
   {
     id: 2,
-    value: 'INN',
+    value: 'inn',
     label: 'Поиск по ИНН',
   },
 ];
@@ -32,13 +32,14 @@ const find = async () => {
   isLoading.value = true;
 
   try {
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/search`,
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_URL}`,
       {
-        value: searchInput.value,
-        type: radioInput.value.value,
-        start_date: formatDate(dateInput.value[0].toISOString()),
-        end_date: formatDate(dateInput.value[1].toISOString()),
+        params: {
+          [radioInput.value.value]: searchInput.value,
+          // start_date: formatDate(dateInput?.value[0].toISOString()) || '',
+          // end_date: formatDate(dateInput?.value[1].toISOString()) || '',
+        },
       },
       {
         headers: {
