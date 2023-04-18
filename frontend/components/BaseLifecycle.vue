@@ -18,9 +18,9 @@ const getStatus = (status) => {
     class="shadow-md flex gap-2 px-2 py-4 bg-rtk-grey text-rtk-black rounded-lg"
   >
     <div class="date">Дата: {{ data.date }}</div>
-    <div class="date">Номер заявки: {{ data['Номер заявки'] }}</div>
-    <div class="date">Клиент: {{ data['Клиент*'] }}</div>
-    <div class="date">ИНН: {{ data['ИНН'] }}</div>
+    <div class="date">Номер заявки: {{ data['nomer_zajavki'] }}</div>
+    <div class="date">Клиент: {{ data['klient_field'] }}</div>
+    <div class="date">ИНН: {{ data['inn'] }}</div>
     <div :class="getStatus(data['Статус'])">Статус: {{ data['Статус'] }}</div>
   </div>
 </template>
