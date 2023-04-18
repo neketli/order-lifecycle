@@ -21,6 +21,6 @@ const getStatus = (status) => {
     <div class="date">Номер заявки: {{ data['nomer_zajavki'] }}</div>
     <div class="date">Клиент: {{ data['klient_field'] }}</div>
     <div class="date">ИНН: {{ data['inn'] }}</div>
-    <div :class="getStatus(data['Статус'])">Статус: {{ data['Статус'] }}</div>
+    <div :class="getStatus(data['status'])">Статус: {{ data['status'] }}</div>
   </div>
 </template>
